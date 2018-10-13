@@ -4,7 +4,6 @@
  */
 package com.woom.magazine.util.guava.hashcode;
 
-import com.sun.xml.internal.xsom.impl.WildcardImpl.Any;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.junit.Test;
 

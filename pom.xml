@@ -11,6 +11,7 @@
     <modules>
         <module>designpattern</module>
         <module>util</module>
+        <module>concurrent</module>
     </modules>
 
 
@@ -30,6 +31,14 @@
                 <version>4.12</version>
                 <scope>test</scope>
             </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>5.1.0.RELEASE</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>

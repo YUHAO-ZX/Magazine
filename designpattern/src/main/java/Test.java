@@ -10,6 +10,10 @@
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println("hello world");
+        OriData<Object,String> oriData = new OriData<Object, String>();
+
+        oriData.put("type","zhekou");
+        oriData.put("discount","1");
+
     }
 }

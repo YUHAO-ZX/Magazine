@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -37,11 +39,18 @@ public class FutureTaskHolderTest {
 
     }
 
+    @Test
+    public void testRejectExecution() {
+        buildAndRun(10,10,10,300,false,1000);
+
+    }
+
     private void buildAndRun(int cs,int ms,int que,final int timeOut,final boolean needTimeOut,int loopTimes){
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(cs);
         executor.setMaxPoolSize(ms);
         executor.setQueueCapacity(que);
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
         executor.initialize();
 
         List<FutureTaskHolder<String>> futureTaskHolderList = new ArrayList<FutureTaskHolder<String>>();

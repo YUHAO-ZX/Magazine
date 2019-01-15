@@ -18,7 +18,7 @@ public class HashCodeBuilderObject {
 
     private AnyObject object;
 
-    private String name;
+    private String    name;
 
     /**
      * Setter method for property <tt>object</tt>.

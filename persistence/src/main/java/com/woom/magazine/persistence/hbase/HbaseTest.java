@@ -5,6 +5,8 @@
 package com.woom.magazine.persistence.hbase;
 
 import com.google.protobuf.ServiceException;
+import com.woom.magazine.persistence.hbase.schema.Schema;
+import com.woom.magazine.persistence.hbase.schema.SchemaGenerator;
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -28,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * https://hbase.apache.org/book.html#getting_started
+ * hbase 学习地址：https://hbase.apache.org/book.html#getting_started
  *
  * @author yuhao.zx
  * @version $Id: HbaseConnector.java, v 0.1 2018年10月30日 3:55 PM yuhao.zx Exp $
@@ -41,10 +43,16 @@ public class HbaseTest {
         testScan();
     }
 
-    public static final byte[] CF = "cf".getBytes();
-    public static final byte[] ATTR = "attr".getBytes();
+    public static void genSchema() throws IOException {
+
+        Schema schema = SchemaGenerator.readByProperties("HomePageBooth");
+
+
+
+    }
+
     public static void testScan() throws IOException {
-        List<Map<String,String>> rs = HbaseGetter.scan("test","cf","name","client_test_row");
+        List<Map<String, String>> rs = HbaseGetter.scan("test", "cf", "name", "client_test_row");
         System.out.println(JSON.toString(rs));
     }
 
@@ -54,7 +62,8 @@ public class HbaseTest {
 
         List<String> manyColumn = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
-            manyColumn.add(new StringBuilder().append("client_test_row").append(",column").append(i).append(",zhangxin").append(i).toString());
+            manyColumn.add(new StringBuilder().append("client_test_row").append(",column").append(i)
+                .append(",zhangxin").append(i).toString());
         }
 
         System.out.println("cost-" + stopWatch.getTime());
@@ -70,7 +79,6 @@ public class HbaseTest {
         StopWatch stopWatch = new StopWatch();
 
         stopWatch.start();
-
 
         Map<String, String> resultMap = HbaseGetter.get("test", "row1", "cf");
 

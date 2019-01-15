@@ -1,0 +1,6 @@
+1.查询sql执行耗时
+set profiling=1;
+执行查询。。。
+show profiles
+
+
